@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wild Salmon — сброс кэша</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #02060d; color: #eaffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; text-align: center; }
+  .box { max-width: 380px; padding: 32px 24px; }
+  h1 { font-size: 1.4rem; color: #39dfff; margin: 0 0 12px; }
+  p  { font-size: 0.95rem; opacity: 0.8; margin: 0 0 24px; line-height: 1.5; }
+  .status { font-size: 0.85rem; opacity: 0.6; min-height: 1.4em; }
+  .ok { color: #4dffa0; }
+  .err { color: #ff6a6a; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Сброс кэша Wild Salmon</h1>
+  <p>Удаляем устаревший кэш и перезапускаем игру…</p>
+  <p class="status" id="st">Ищем Service Worker…</p>
+</div>
+<script>
+(async function () {
+  const st = document.getElementById('st');
+  const log = (msg, cls) => { st.textContent = msg; if (cls) st.className = 'status ' + cls; };
+
+  try {
+    // 1. Удаляем все кэши
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+      log('Кэши удалены (' + keys.length + ' шт.)…');
+    }
+
+    // 2. Снимаем регистрацию всех Service Workers
+    if ('serviceWorker' in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(r => r.unregister()));
+      log('Service Workers сняты (' + regs.length + ' шт.)…');
+    }
+
+    log('Готово! Переходим в игру…', 'ok');
+    // 3. Переходим на главную с cache-busting параметром
+    setTimeout(() => {
+      window.location.replace('/?nocache=' + Date.now());
+    }, 800);
+  } catch (e) {
+    log('Ошибка: ' + e.message + ' — переходим…', 'err');
+    setTimeout(() => { window.location.replace('/'); }, 1200);
+  }
+})();
+</script>
+</body>
+</html>
