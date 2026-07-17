@@ -1,0 +1,15 @@
+{
+  "difficulty_speed_base": 1.9,
+  "difficulty_speed_step": 0.45,
+  "difficulty_speed_max": 4.6,
+  "difficulty_gap_base": 240,
+  "difficulty_gap_step": 18,
+  "difficulty_gap_min": 156,
+  "difficulty_tightness_step": 0.09,
+  "difficulty_tightness_min": 0.58,
+  "weekly_score_target": 150,
+  "weekly_score_reward": 650,
+  "rewarded_x2_enabled": true,
+  "interstitial_before_run": false,
+  "interstitial_every_n_attempts": 10
+}

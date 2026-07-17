@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1202818263280891"
+     crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="description" content="Wild Salmon — неоновая аркада с Zalmon. Нитро, скины, миссии и онлайн ТОП-10. Играй в браузере или добавь на экран iPhone.">
+    <meta name="theme-color" content="#021026">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wild Salmon">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Wild Salmon">
+    <meta property="og:title" content="Wild Salmon — играй онлайн">
+    <meta property="og:description" content="Неоновая аркада с Zalmon. Нитро, скины, миссии, ТОП-10. На iPhone: Safari → На экран Домой.">
+    <meta property="og:url" content="https://wildsalmon.kz/play.html">
+    <meta property="og:image" content="https://wildsalmon.kz/icons/icon-512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wild Salmon">
+    <meta name="twitter:description" content="Играй в браузере. На iPhone — добавь на экран Домой.">
+    <meta name="twitter:image" content="https://wildsalmon.kz/icons/icon-512.png">
+    <link rel="canonical" href="https://wildsalmon.kz/play.html">
+    <title>Wild Salmon — Дикий Лосось</title>
+    <style id="critical-css">
+        html, body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #123a63 0%, #041225 42%, #02060d 100%);
+            color: #eaffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        body {
+            overflow-x: hidden;
+        }
+        .site-shell {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 16px 12px 24px;
+            box-sizing: border-box;
+        }
+        .game-container {
+            position: relative;
+            width: min(480px, 100vw - 24px);
+            aspect-ratio: 9 / 16;
+            overflow: hidden;
+            background: linear-gradient(180deg, #050a16 0%, #02060d 100%);
+            border-radius: 18px;
+            box-shadow: 0 0 40px rgba(0,0,0,.7), 0 0 0 1px rgba(57,223,255,.18);
+        }
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .game-ui, .ui-overlay, .sound-toggle {
+            position: absolute;
+            z-index: 100;
+        }
+        .ui-overlay {
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 12px 72px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .menu-screen, .game-over-screen, .shop-screen, .leaderboard-screen {
+            width: min(92%, 420px);
+            color: #f5fbff;
+            text-align: center;
+        }
+        .game-title, .splash-title {
+            color: #7ff4ff;
+            font-weight: 900;
+            letter-spacing: .08em;
+            text-shadow: 0 0 18px rgba(57,223,255,.65);
+        }
+        .neon-button, button {
+            border: 1px solid rgba(57,223,255,.55);
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(24,75,120,.95), rgba(7,25,48,.95));
+            color: #eaffff;
+            padding: 10px 16px;
+            font: inherit;
+            font-weight: 800;
+        }
+        .app-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #02060d;
+            transition: opacity .35s ease;
+        }
+        .app-splash.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .site-footer {
+            margin-top: 14px;
+            color: rgba(234,255,255,.78);
+            font-size: 13px;
+            text-align: center;
+        }
+        .site-footer a {
+            color: #7ff4ff;
+        }
+        .site-intro {
+            max-width: 720px;
+            margin: 22px auto 4px;
+            padding: 0 16px;
+            color: rgba(220, 240, 255, .82);
+            line-height: 1.7;
+        }
+        .site-intro h2 {
+            color: #7ff4ff;
+            font-size: 1.15rem;
+            margin: 0 0 10px;
+            text-shadow: 0 0 14px rgba(127,244,255,.35);
+        }
+        .site-intro p { margin: 0 0 12px; font-size: .95rem; }
+        .site-intro a { color: #7ff4ff; }
+        .site-intro-links { font-size: .9rem; }
+        .site-intro .blog-list { margin: 10px 0 0; padding-left: 18px; }
+        .site-intro .blog-list li { margin: 4px 0; }
+        @media (max-width: 768px) {
+            .site-shell {
+                padding: 0;
+                height: auto;
+                min-height: 100dvh;
+            }
+            .game-container {
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                border-radius: 0;
+                flex-shrink: 0;
+            }
+            .site-intro {
+                display: block;
+                padding: 28px 18px 8px;
+                margin: 0;
+                max-width: none;
+                background: #041225;
+            }
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+    <link rel="stylesheet" href="styles.css?v=20260717-native">
+    <script>
+    (function () {
+        try {
+            var native = !!(window.Capacitor && Capacitor.isNativePlatform && Capacitor.isNativePlatform());
+            if (native) {
+                document.documentElement.classList.add('native-app');
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.body.classList.add('native-app');
+                });
+            }
+        } catch (e) {}
+    })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800;900&family=Russo+One&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Wild Salmon",
+      "alternateName": "Дикий Лосось",
+      "url": "https://wildsalmon.kz/",
+      "image": "https://wildsalmon.kz/icons/icon-512.png",
+      "description": "Wild Salmon — бесплатная неоновая аркада про рыбу Zalmon. Проходите неоновые ворота, собирайте монеты, открывайте скины, выполняйте миссии и соревнуйтесь в мировой таблице лидеров.",
+      "inLanguage": ["ru", "en"],
+      "genre": ["Arcade", "Casual"],
+      "gamePlatform": ["Web browser", "Android", "iOS"],
+      "operatingSystem": "Any (HTML5)",
+      "applicationCategory": "Game",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Organization", "name": "Ty Che Za", "email": "zgbd03@gmail.com" },
+      "publisher": { "@type": "Organization", "name": "Ty Che Za" }
+    }
+    </script>
+</head>
+<body>
+    <!-- Splash screen — рендерится мгновенно до загрузки JS -->
+    <div id="appSplash" class="app-splash">
+        <div class="splash-glow"></div>
+        <div class="splash-content">
+            <div class="splash-title">WILD SALMON</div>
+            <div class="splash-sub" id="splashSub">Дикий Лосось</div>
+            <div class="splash-loader"><span></span><span></span><span></span></div>
+            <div class="splash-copyright">&copy; 2026 Ty Che Za. All rights reserved.<br>Zalmon&trade; character from Wild Salmon&trade;</div>
+        </div>
+    </div>
+
+    <div class="site-shell">
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- UI элементы (счет) -->
+        <div class="game-ui" id="gameUI">
+            <div id="currentScore">0</div>
+            <div id="difficultyLevelPill" style="display:none;"><span id="worldTierLabel">Мир 1</span> · <span id="levelShortLabel">Ур.</span> <span id="difficultyLevel">1</span></div>
+            <div id="runCoinsLivePill"><svg class="ui-svg coin-svg" aria-hidden="true"><use href="assets/ui-sprites.svg#coin"></use></svg><span id="runCoinsLive">0</span></div>
+            <div id="totalCoins">0</div>
+            <div id="highScorePill">Рекорд: <span id="highScore">0</span></div>
+        </div>
+        <button type="button" id="nitroButton" class="nitro-button" aria-label="Nitro boost" style="display:none;">
+            <span class="nitro-bottle">
+                <span class="nitro-bottle-cap"></span>
+                <span class="nitro-bottle-body">
+                    <span class="nitro-can-fill" id="nitroCanFill"></span>
+                    <span class="nitro-bottle-label">N<sub>2</sub>O</span>
+                </span>
+            </span>
+            <span class="nitro-button-label" id="nitroButtonLabel">NITRO</span>
+        </button>
+        <div id="totalCoinsPill" class="menu-coin-pill" style="display:none;"><svg class="ui-svg coin-svg" aria-hidden="true"><use href="assets/ui-sprites.svg#coin"></use></svg><span id="totalCoinsMenu">0</span></div>
+        <div id="coinFlyLayer" aria-hidden="true"></div>
+
+        <!-- UI меню и оверлей -->
+        <div class="ui-overlay" id="uiOverlay">
+            <!-- Стартовый экран -->
+            <div class="start-screen" id="startScreen">
+                <div class="language-toggle" id="languageToggle" aria-label="Language">
+                    <button type="button" data-lang="ru" class="active" onclick="event.stopPropagation(); window.neonGame && window.neonGame.setLanguage('ru')">RU</button>
+                    <button type="button" data-lang="en" onclick="event.stopPropagation(); window.neonGame && window.neonGame.setLanguage('en')">EN</button>
+                </div>
+                <div id="menuPlayerName" class="menu-player-name" style="display:none;"></div>
+                <h1 class="game-title">WILD SALMON</h1>
+                <p class="game-subtitle" id="gameSubtitle">Плыви вперёд. Удерживай тап — буст.</p>
+                <button type="button" class="selected-skin-card" id="selectedSkinCard" aria-label="Открыть коллекцию скинов">
+                    <div class="selected-skin-frame">
+                        <img id="selectedSkinPreview" src="assets/wild_salmon_preview.png" alt="Текущий скин">
+                        <script>
+                            (function(){
+                                try {
+                                    var v = Number(localStorage.getItem('selectedVariant')) || 1;
+                                    var src = 'assets/wild_salmon_preview.png';
+                                    if (v === 4) src = 'assets/wild_salmon_tux_preview.png';
+                                    else if (v === 5) src = 'assets/wild_salmon_techno_preview.png';
+                                    else if (v === 6) src = 'assets/wild_salmon_cosmo_preview.png';
+                                    else if (v === 7) src = 'assets/wild_salmon_captain_preview.png';
+                                    else if (v === 8) src = 'assets/wild_salmon_bat_preview.png';
+                                    document.getElementById('selectedSkinPreview').src = src;
+                                } catch(e){}
+                            })();
+                        </script>
+                    </div>
+                    <div class="selected-skin-text">
+                        <span>Текущий скин</span>
+                        <strong id="selectedSkinName">Классический</strong>
+                    </div>
+                </button>
+                <button type="button" class="pwa-install-menu-btn" id="pwaInstallMenuBtn" style="display:none;">
+                    <img class="pwa-install-menu-icon-img" src="icons/apple-touch-icon.png" width="40" height="40" alt="">
+                    <span class="pwa-install-menu-text">
+                        <strong class="pwa-install-menu-label">На экран Домой</strong>
+                        <span class="pwa-install-menu-hint">Поделиться → На экран Домой</span>
+                    </span>
+                </button>
+                <button class="neon-button primary-cta" id="startButton" onclick="window.neonGame && window.neonGame.startGame()">ИГРАТЬ</button>
+                <div class="menu-actions">
+                    <button class="btn secondary" id="openShopButton" onclick="event.stopPropagation(); window.neonGame && window.neonGame.openShop()"><svg class="ui-svg"><use href="assets/ui-sprites.svg#shop"></use></svg>Магазин</button>
+                    <button class="btn secondary" id="openTopButton"><svg class="ui-svg"><use href="assets/ui-sprites.svg#top"></use></svg>ТОП-10</button>
+                    <button class="btn secondary" id="openSkinsButton" onclick="event.stopPropagation(); window.neonGame && window.neonGame.openCollection()" style="display:none;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#skins"></use></svg>Скины</button>
+                    <button class="btn secondary" id="openCollectionButton" style="display:none;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#skins"></use></svg>Коллекция</button>
+                </div>
+                <div class="daily-reward-card" id="dailyRewardCard">
+                    <div>
+                        <strong>Ежедневный бонус</strong>
+                        <span id="dailyRewardStatus">4 забега сегодня → +120 монет</span>
+                    </div>
+                    <button class="btn small" id="dailyRewardButton" onclick="event.stopPropagation(); window.neonGame && window.neonGame.claimDailyReward()">Забрать</button>
+                </div>
+                <div class="daily-missions-card">
+                    <div class="mission-header">
+                        <strong>Миссии дня</strong>
+                        <span id="missionResetHint">обновляются ежедневно</span>
+                    </div>
+                    <div id="dailyMissionsList" class="daily-missions-list"></div>
+                </div>
+                <div class="weekly-goal-card" id="weeklyMissionsCard">
+                    <div class="mission-header">
+                        <strong>Недельные миссии</strong>
+                        <span id="weeklyGoalResetHint">обновляются понедельником</span>
+                    </div>
+                    <div id="weeklyMissionsList" class="daily-missions-list"></div>
+                </div>
+                <div class="streak-card" id="loginStreakCard">
+                    <div class="streak-card-inner">
+                        <strong>Серия входов</strong>
+                        <div class="streak-ring-wrap">
+                            <div class="streak-ring" id="streakRingGlow"><span id="streakDayNumber">1</span></div>
+                        </div>
+                        <div id="streakCopy" class="streak-copy">День 1 — забери награду сегодня</div>
+                        <div id="streakResetTimer" class="streak-timer"></div>
+                        <button type="button" class="btn small" id="streakClaimBtn" onclick="event.stopPropagation(); window.neonGame && window.neonGame.claimLoginStreak()">Забрать</button>
+                    </div>
+                </div>
+                <!-- Выбор пауэр-апов перед стартом -->
+                <div id="powerupSelector" style="margin-top: 20px; padding: 12px; background: rgba(255, 0, 255, 0.1); border: 2px solid rgba(255, 0, 255, 0.3); border-radius: 10px; max-width: 350px; margin-left: auto; margin-right: auto; display: none;">
+                    <p style="color: #ff00ff; font-size: 16px; margin: 0 0 10px 0; text-shadow: 0 0 10px #ff00ff;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#boost"></use></svg>ИСПОЛЬЗОВАТЬ ПАУЭР-АПЫ:</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <label id="usePass23Label" style="display: flex; align-items: center; gap: 6px; color: #00ffff; cursor: pointer; opacity: 0.5;">
+                            <input type="checkbox" id="usePass23Checkbox" disabled style="width: 18px; height: 18px;">
+                            <span><svg class="ui-svg"><use href="assets/ui-sprites.svg#boost"></use></svg>Boost 23 (<span id="pass23Available">0</span>)</span>
+                        </label>
+                        <label id="useShieldLabel" style="display: flex; align-items: center; gap: 6px; color: #00eaff; cursor: pointer; opacity: 0.5;">
+                            <input type="checkbox" id="useShieldCheckbox" disabled style="width: 18px; height: 18px;">
+                            <span><svg class="ui-svg"><use href="assets/ui-sprites.svg#shield"></use></svg>Щит (<span id="shieldAvailable">0</span>)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Подсказка для новичков -->
+                <div class="how-to-play-card">
+                    <p><svg class="ui-svg"><use href="assets/ui-sprites.svg#tap"></use></svg>Тап по экрану — подъём</p>
+                    <p><svg class="ui-svg"><use href="assets/ui-sprites.svg#nitro"></use></svg>Баллон азота заполнен — жми для рывка</p>
+                    <p><svg class="ui-svg"><use href="assets/ui-sprites.svg#spark"></use></svg>Пролетай ворота и собирай монеты</p>
+                    <p style="margin-top:10px;font-size:12px;line-height:1.45;opacity:.95;text-align:left;">
+                        <strong style="color:#7ff4ff;">iPhone — иконка на экран Домой:</strong><br>
+                        1) Откройте эту страницу в <strong>Safari</strong> (не Instagram)<br>
+                        2) <strong>Поделиться</strong> → <strong>На экран «Домой»</strong> → Добавить<br>
+                        3) С иконки откроется сразу игра
+                    </p>
+                    <p style="margin-top:8px;font-size:12px;opacity:.9;"><a href="guide-iphone-pwa.html" style="color:#7ff4ff;">Подробная инструкция →</a> · <a href="blog.html" style="color:#7ff4ff;">Гайды</a></p>
+                </div>
+                <nav class="legal-links web-only" aria-label="Legal">
+                    <a href="/">Магазин мерча</a>
+                    <span aria-hidden="true"> · </span>
+                    <a href="about.html">Об игре</a>
+                    <span aria-hidden="true"> · </span>
+                    <a href="blog.html">Блог</a>
+                    <span aria-hidden="true"> · </span>
+                    <a href="faq.html">FAQ</a>
+                    <span aria-hidden="true"> · </span>
+                    <a href="contact.html">Контакты</a>
+                    <span aria-hidden="true"> · </span>
+                    <a href="privacy.html">Privacy</a>
+                    <span aria-hidden="true"> · </span>
+                    <a href="terms.html">Условия</a>
+                </nav>
+                <div class="copyright-notice">&copy; 2026 Ty Che Za. All rights reserved.<br>Zalmon&trade; character from Wild Salmon&trade;</div>
+            </div>
+
+            <!-- Хаб мета-игры (первый экран сессии) -->
+            <div class="meta-hub-overlay" id="metaHubOverlay" style="display:none;" role="dialog" aria-modal="true">
+                <div class="meta-hub-card">
+                    <p class="meta-hub-kicker" id="metaHubKicker">WILD SALMON · Zalmon™</p>
+                    <h2 id="metaHubTitle">Коллекционная аркада</h2>
+                    <p id="metaHubDesc" class="meta-hub-desc">Собирай скины, открывай паки, выполняй миссии — забег только часть пути.</p>
+                    <div class="meta-hub-actions">
+                        <button type="button" class="btn secondary meta-hub-btn" id="metaHubCollectionBtn"><svg class="ui-svg"><use href="assets/ui-sprites.svg#skins"></use></svg><span id="metaHubCollectionLbl">Коллекция</span></button>
+                        <button type="button" class="btn secondary meta-hub-btn" id="metaHubShopBtn"><svg class="ui-svg"><use href="assets/ui-sprites.svg#shop"></use></svg><span id="metaHubShopLbl">Магазин</span></button>
+                    </div>
+                    <button type="button" class="neon-button primary-cta" id="metaHubPlayBtn">К ЗАБЕГУ</button>
+                </div>
+            </div>
+
+            <!-- Онбординг-история (первый запуск) -->
+            <div class="onboarding-overlay" id="onboardingOverlay" style="display:none;" role="dialog" aria-modal="true">
+                <div class="onboarding-card">
+                    <div class="onboarding-hero">
+                        <img id="onboardingHero" src="assets/wild_salmon_preview.png" alt="Zalmon">
+                    </div>
+                    <h2 id="onboardingTitle">Знакомьтесь — Zalmon</h2>
+                    <p id="onboardingStory" class="onboarding-story"></p>
+                    <ul class="onboarding-tips" id="onboardingTips"></ul>
+                    <button type="button" class="neon-button primary-cta" id="onboardingStartBtn">НАЧАТЬ</button>
+                </div>
+            </div>
+
+            <!-- Игровой экран -->
+            <div class="game-over-screen" id="gameOverScreen" style="display: none;">
+                <h2 class="game-over-title">ИГРА ОКОНЧЕНА</h2>
+                <div class="final-score">
+                    <p>Ваш счет: <span id="finalScore">0</span></p>
+                    <p>Рекорд: <span id="finalHighScore">0</span></p>
+                    <p>Монеты за забег: <span id="runCoins">0</span></p>
+                </div>
+                <div class="demotivator-card" id="demotivatorCard">
+                    <div class="demotivator-header">
+                        <img class="demotivator-avatar" src="assets/coach_avatar.png" alt="@23ag" decoding="async">
+                        <div class="demotivator-username">
+                            <span class="demotivator-handle">23ag</span>
+                            <span class="demotivator-verified" aria-label="verified">✓</span>
+                        </div>
+                    </div>
+                    <div class="demotivator-body" id="demotivatorBody">Дальше меньше</div>
+                </div>
+                <div class="game-over-actions">
+                    <button class="neon-button reward-button" id="doubleCoinsButton" style="display:none;">x2 МОНЕТЫ ЗА РЕКЛАМУ</button>
+                    <button class="neon-button reward-button" id="surpriseBoxButton" style="display:none;">СЮРПРИЗ-БОКС</button>
+                    <button class="neon-button" id="restartButton" onclick="window.neonGame && window.neonGame.restartGame()">ИГРАТЬ СНОВА</button>
+                    <button class="neon-button" id="menuButton" onclick="window.neonGame && window.neonGame.backToMenu()">В МЕНЮ</button>
+                </div>
+            </div>
+
+            <!-- Модальное окно ввода имени -->
+            <div class="name-prompt" id="namePrompt" style="display:none;">
+                <div class="name-prompt-content">
+                    <h3>Новый рекорд!</h3>
+                    <p>Введите ваше имя для таблицы лидеров:</p>
+                    <input type="text" id="playerNameInput" maxlength="30" placeholder="@instagram" autocomplete="nickname" autocapitalize="off" spellcheck="false" />
+                    <div class="name-prompt-actions">
+                        <button class="neon-button" id="saveNameButton">Сохранить</button>
+                        <button class="neon-button" id="cancelNameButton">Отмена</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="leaderboard-modal" id="leaderboardModal">
+                <div class="leaderboard-modal-content">
+                    <h3>ТОП-10 ДИКИХ ЛОСОСЕЙ</h3>
+                    <ol id="leaderboardModalList"></ol>
+                    <button class="btn" id="closeTopButton">Закрыть</button>
+                </div>
+            </div>
+
+            <!-- Магазин скинов -->
+            <div class="menu-screen shop-screen" id="shopScreen" style="display: none;">
+                <h2>Магазин скинов</h2>
+                <p class="coins-display">Ваши монеты: <span id="shopCoins">0</span> <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                <div class="skin-progress-card">
+                    <div class="run-progress-title">Прогресс до скина</div>
+                    <div id="skinProgressText">Выбери цель в магазине</div>
+                    <div class="run-progress-bar"><span id="skinProgressFill"></span></div>
+                </div>
+                <p class="shop-note"><span id="shopDustLine"></span></p>
+                <div class="shop-tabs" role="tablist" aria-label="Разделы магазина">
+                    <button class="shop-tab active" type="button" id="shopTabLoot" data-shop-tab="loot" onclick="window.neonGame && window.neonGame.switchShopTab('loot')">Паки</button>
+                    <button class="shop-tab" type="button" id="shopTabPowerups" data-shop-tab="powerups" onclick="window.neonGame && window.neonGame.switchShopTab('powerups')">Пауэр-апы</button>
+                    <button class="shop-tab" type="button" id="shopTabSkins" data-shop-tab="skins" onclick="window.neonGame && window.neonGame.switchShopTab('skins')">Скины</button>
+                </div>
+                <!-- Лутбоксы -->
+                <div class="shop-tab-panel active" data-shop-tab-panel="loot" style="margin-bottom: 30px; padding: 20px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 10px;">
+                    <h3 style="color: #ffd700; margin-bottom: 15px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#loot-rare"></use></svg>ПАКИ · фрагменты скинов</h3>
+                    <p class="shop-note">За дубликаты карт начисляются монеты; из пака может выпасть щит или Boost 23.</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; text-align: center; min-width: 140px;">
+                            <svg class="item-art"><use href="assets/ui-sprites.svg#loot-basic"></use></svg>
+                            <p id="packBasicLabel" style="color: #00ff00; font-size: 14px; margin: 5px 0;">Базовый пак</p>
+                            <p style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 5px 0;">1200 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <button class="btn small pack-buy-btn" onclick="window.neonGame && window.neonGame.buyPack('basic')" style="margin-top: 10px;">Открыть</button>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; text-align: center; min-width: 140px;">
+                            <svg class="item-art"><use href="assets/ui-sprites.svg#loot-rare"></use></svg>
+                            <p id="packRareLabel" style="color: #00ffff; font-size: 14px; margin: 5px 0;">Редкий пак</p>
+                            <p style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 5px 0;">6000 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <button class="btn small pack-buy-btn" onclick="window.neonGame && window.neonGame.buyPack('rare')" style="margin-top: 10px;">Открыть</button>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; text-align: center; min-width: 140px;">
+                            <svg class="item-art"><use href="assets/ui-sprites.svg#loot-neon"></use></svg>
+                            <p id="packEpicLabel" style="color: #ff00ff; font-size: 14px; margin: 5px 0;">Эпический пак</p>
+                            <p style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 5px 0;">20000 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <button class="btn small pack-buy-btn" onclick="window.neonGame && window.neonGame.buyPack('epic')" style="margin-top: 10px;">Открыть</button>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; text-align: center; min-width: 140px; border: 1px dashed rgba(0,255,255,0.35);">
+                            <p id="freePackLabel" style="color: #9cf; font-size: 14px; margin: 5px 0;">Бесплатный пак</p>
+                            <p style="color: #ccc; font-size: 12px; margin: 8px 0;" id="freePackTimer">Каждые 4 ч</p>
+                            <button class="btn small" id="freePackBtn" onclick="window.neonGame && window.neonGame.claimTimedFreePack()" style="margin-top: 10px;">Забрать</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Пауэр-апы -->
+                <div class="shop-tab-panel" data-shop-tab-panel="powerups" style="margin-bottom: 30px; padding: 20px; background: rgba(0, 255, 255, 0.08); border: 2px solid rgba(0, 255, 255, 0.25); border-radius: 10px;">
+                    <h3 style="color: #00ffff; margin-bottom: 15px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#boost"></use></svg>Пауэр‑апы</h3>
+                    <p class="shop-note">Пауэр-апы помогают пройти дальше, но не ломают core loop: препятствия всё равно нужно читать.</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; text-align: center; min-width: 200px;">
+                            <svg class="item-art"><use href="assets/ui-sprites.svg#boost"></use></svg>
+                            <p id="pass23Title" style="color: #00ffff; font-size: 14px; margin: 5px 0;">Пропуск к 23 уровню</p>
+                            <p style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 5px 0;">200 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <p id="pass23Desc" style="color:#aaa; font-size:12px; margin:6px 0 10px 0;">Старт сразу с врагами и музыкой</p>
+                            <button class="btn small powerup-buy-btn" onclick="window.neonGame && window.neonGame.buyPowerup('pass23', 200)">Купить</button>
+                            <div style="margin-top:8px; color:#9cf; font-size:12px;"><span class="you-have-label">У вас:</span> <span id="powerupPass23Count">0</span></div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; text-align: center; min-width: 200px;">
+                            <svg class="item-art"><use href="assets/ui-sprites.svg#shield"></use></svg>
+                            <p id="shieldPowerTitle" style="color: #00ffff; font-size: 14px; margin: 5px 0;">Щит от врагов</p>
+                            <p style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 5px 0;">100 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <p id="shieldPowerDesc" style="color:#aaa; font-size:12px; margin:6px 0 10px 0;">Игнорирует корабли до удара в стену</p>
+                            <button class="btn small powerup-buy-btn" onclick="window.neonGame && window.neonGame.buyPowerup('shield', 100)">Купить</button>
+                            <div style="margin-top:8px; color:#9cf; font-size:12px;"><span class="you-have-label">У вас:</span> <span id="powerupShieldCount">0</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- СКИНЫ ДЛЯ ПОКУПКИ -->
+                <div class="shop-tab-panel" data-shop-tab-panel="skins">
+                    <h3 style="color: #00ffff; margin-bottom: 15px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#skins"></use></svg>Покупка скинов за монеты</h3>
+                    <p class="shop-note">Купите скин напрямую или соберите фрагменты в паках — выбор за вами.</p>
+                    <div class="shop-items">
+                        <div class="shop-item" id="shopTux">
+                            <div class="skin-preview-frame"><img class="skin-preview-img" src="assets/wild_salmon_tux_preview.png" alt="Скин Дикий Агент Лосось"></div>
+                            <h3>Дикий Агент Лосось</h3>
+                            <p style="color: #ffff00; font-size: 12px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#loot-neon"></use></svg>x2 монеты</p>
+                            <p class="item-price">15000 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <p class="item-fragments">фрагменты: 0/100</p>
+                            <button class="btn small" onclick="window.neonGame && window.neonGame.buySkin('tux', 15000)">Купить</button>
+                        </div>
+                        <div class="shop-item" id="shopTechno">
+                            <div class="skin-preview-frame"><img class="skin-preview-img" src="assets/wild_salmon_techno_preview.png" alt="Скин Дикий Техно Лосось"></div>
+                            <h3>Дикий Техно Лосось</h3>
+                            <p style="color: #00ffff; font-size: 12px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#spark"></use></svg>Усиленное свечение</p>
+                            <p class="item-price">25000 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <p class="item-fragments">фрагменты: 0/150</p>
+                            <button class="btn small" onclick="window.neonGame && window.neonGame.buySkin('techno', 25000)">Купить</button>
+                        </div>
+                        <div class="shop-item" id="shopCosmo">
+                            <div class="skin-preview-frame"><img class="skin-preview-img" src="assets/wild_salmon_cosmo_preview.png" alt="Скин Дикий Космо Лосось"></div>
+                            <h3>Дикий Космо Лосось</h3>
+                            <p style="color: #ff00ff; font-size: 12px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#boost"></use></svg>старт с 23 уровня</p>
+                            <p class="item-price">35000 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <p class="item-fragments">фрагменты: 0/250</p>
+                            <button class="btn small" onclick="window.neonGame && window.neonGame.buySkin('cosmo', 35000)">Купить</button>
+                        </div>
+                        <div class="shop-item premium-skin" id="shopCaptain">
+                            <div class="skin-preview-frame premium"><img class="skin-preview-img" src="assets/wild_salmon_captain_preview.png" alt="Скин Дикий Капитан Лосось"></div>
+                            <h3>Дикий Капитан Лосось</h3>
+                            <p style="color: #8fd7ff; font-size: 12px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#shield"></use></svg>x3 монеты</p>
+                            <p class="item-price">45000 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <p class="item-fragments">фрагменты: 0/250</p>
+                            <button class="btn small" onclick="window.neonGame && window.neonGame.buySkin('captain', 45000)">Купить</button>
+                        </div>
+                        <div class="shop-item premium-skin" id="shopBat">
+                            <div class="skin-preview-frame premium dark"><img class="skin-preview-img" src="assets/wild_salmon_bat_preview.png" alt="Скин Дикий Бэтлосось"></div>
+                            <h3>Дикий Бэтлосось</h3>
+                            <p style="color: #ffe27a; font-size: 12px;"><svg class="ui-svg"><use href="assets/ui-sprites.svg#spark"></use></svg>раннее предупреждение врагов</p>
+                            <p class="item-price">55000 <svg class="ui-svg coin-svg"><use href="assets/ui-sprites.svg#coin"></use></svg></p>
+                            <p class="item-fragments">фрагменты: 0/300</p>
+                            <button class="btn small" onclick="window.neonGame && window.neonGame.buySkin('bat', 55000)">Купить</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" id="closeShopButton" onclick="window.neonGame && window.neonGame.closeShop()">Назад</button>
+            </div>
+
+            <!-- Меню выбора скинов -->
+            <div class="menu-screen shop-screen" id="skinsScreen" style="display: none;">
+                <h2>Выбор скина</h2>
+                <p class="subtitle">Выберите активный скин для игры</p>
+                <div class="shop-items">
+                    <div class="shop-item skin-select" id="skinDefault" onclick="window.neonGame && window.neonGame.selectSkin(1)">
+                        <div class="skin-preview-frame"><img class="skin-preview-img" src="assets/wild_salmon_preview.png" alt="Классический скин"></div>
+                        <h3>Классический</h3>
+                        <p class="selected-badge" style="display:none;">ВЫБРАН</p>
+                    </div>
+                    <div class="shop-item skin-select" id="skinTux" onclick="window.neonGame && window.neonGame.selectSkin(4)" style="opacity: 0.5;">
+                        <div class="skin-preview-frame"><img class="skin-preview-img" src="assets/wild_salmon_tux_preview.png" alt="Скин Дикий Агент Лосось"></div>
+                        <h3>Дикий Агент Лосось</h3>
+                        <p class="locked-badge"><svg class="ui-svg"><use href="assets/ui-sprites.svg#lock"></use></svg>Купите в магазине</p>
+                        <p class="selected-badge" style="display:none;">ВЫБРАН</p>
+                    </div>
+                    <div class="shop-item skin-select" id="skinTechno" onclick="window.neonGame && window.neonGame.selectSkin(5)" style="opacity: 0.5;">
+                        <div class="skin-preview-frame"><img class="skin-preview-img" src="assets/wild_salmon_techno_preview.png" alt="Скин Дикий Техно Лосось"></div>
+                        <h3>Дикий Техно Лосось</h3>
+                        <p class="locked-badge"><svg class="ui-svg"><use href="assets/ui-sprites.svg#lock"></use></svg>Купите в магазине</p>
+                        <p class="selected-badge" style="display:none;">ВЫБРАН</p>
+                    </div>
+                    <div class="shop-item skin-select" id="skinCosmo" onclick="window.neonGame && window.neonGame.selectSkin(6)" style="opacity: 0.5;">
+                        <div class="skin-preview-frame"><img class="skin-preview-img" src="assets/wild_salmon_cosmo_preview.png" alt="Скин Дикий Космо Лосось"></div>
+                        <h3>Дикий Космо Лосось</h3>
+                        <p class="locked-badge"><svg class="ui-svg"><use href="assets/ui-sprites.svg#lock"></use></svg>Купите в магазине</p>
+                        <p class="selected-badge" style="display:none;">ВЫБРАН</p>
+                    </div>
+                    <div class="shop-item skin-select" id="skinCaptain" onclick="window.neonGame && window.neonGame.selectSkin(7)" style="opacity: 0.5;">
+                        <div class="skin-preview-frame premium"><img class="skin-preview-img" src="assets/wild_salmon_captain_preview.png" alt="Скин Дикий Капитан Лосось"></div>
+                        <h3>Дикий Капитан Лосось</h3>
+                        <p class="locked-badge"><svg class="ui-svg"><use href="assets/ui-sprites.svg#lock"></use></svg>Купите в магазине</p>
+                        <p class="selected-badge" style="display:none;">ВЫБРАН</p>
+                    </div>
+                    <div class="shop-item skin-select" id="skinBat" onclick="window.neonGame && window.neonGame.selectSkin(8)" style="opacity: 0.5;">
+                        <div class="skin-preview-frame premium dark"><img class="skin-preview-img" src="assets/wild_salmon_bat_preview.png" alt="Скин Дикий Бэтлосось"></div>
+                        <h3>Дикий Бэтлосось</h3>
+                        <p class="locked-badge"><svg class="ui-svg"><use href="assets/ui-sprites.svg#lock"></use></svg>Купите в магазине</p>
+                        <p class="selected-badge" style="display:none;">ВЫБРАН</p>
+                    </div>
+                </div>
+                <button class="btn" id="closeSkinsButton">Назад</button>
+            </div>
+
+            <div class="menu-screen shop-screen" id="collectionScreen" style="display: none;">
+                <h2>Коллекция</h2>
+                <p class="subtitle">Все скины, бонусы, цены и прогресс открытия</p>
+                <div id="collectionItems" class="collection-items"></div>
+                <button class="btn" id="closeCollectionButton" onclick="window.neonGame && window.neonGame.closeCollection()">Назад</button>
+            </div>
+
+            <div class="ad-modal" id="adModal" style="display:none;">
+                <div class="ad-modal-content">
+                    <div id="webAdsModalSlot" class="web-ads-modal-slot"></div>
+                    <h3 id="adModalTitle">Реклама</h3>
+                    <p id="adModalText">Возвращаемся через <span id="adCountdown">3</span> сек</p>
+                </div>
+            </div>
+            <div id="webPlayStoreModal" class="web-play-modal" hidden>
+                <div class="web-play-backdrop"></div>
+                <div class="web-play-card">
+                    <img src="icons/apple-touch-icon.png" width="64" height="64" alt="" class="web-play-icon">
+                    <h3 class="web-play-title"></h3>
+                    <p class="web-play-body"></p>
+                    <button type="button" class="neon-button web-play-open"></button>
+                    <button type="button" class="btn secondary web-play-skip"></button>
+                </div>
+            </div>
+            <div id="packRevealModal" class="pack-reveal-modal" style="display:none;" aria-hidden="true">
+                <div class="pack-reveal-inner">
+                    <h3 id="packRevealTitle">Пак открыт</h3>
+                    <div id="packRevealGrid" class="pack-reveal-grid"></div>
+                    <button type="button" class="btn small" id="packRevealCloseBtn">Отлично</button>
+                </div>
+            </div>
+            <div class="game-message-modal" id="surpriseBoxModal" style="display:none;" role="dialog" aria-modal="true">
+                <div class="game-message-card">
+                    <div class="game-message-kicker">SURPRISE</div>
+                    <h3 id="surpriseBoxTitle">Surprise box</h3>
+                    <p id="surpriseBoxText"></p>
+                    <div class="game-message-actions">
+                        <button class="btn small reward-button" id="surpriseBoxWatchBtn" type="button">Watch video</button>
+                        <button class="btn small" id="surpriseBoxSkipBtn" type="button">Skip</button>
+                    </div>
+                </div>
+            </div>
+            <div class="game-message-modal" id="dailyHalfAdModal" style="display:none;" role="dialog" aria-modal="true">
+                <div class="game-message-card">
+                    <div class="game-message-kicker">DAILY</div>
+                    <h3 id="dailyHalfAdTitle">Half of today's rewards</h3>
+                    <p id="dailyHalfAdText"></p>
+                    <div class="game-message-actions">
+                        <button class="btn small reward-button" id="dailyHalfAdWatchBtn" type="button">Watch video</button>
+                        <button class="btn small" id="dailyHalfAdSkipBtn" type="button">Not now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="game-message-modal" id="gameMessageModal" style="display:none;" role="dialog" aria-modal="true">
+                <div class="game-message-card">
+                    <div class="game-message-kicker" id="gameMessageKicker">WILD SALMON</div>
+                    <h3 id="gameMessageTitle">Сообщение</h3>
+                    <p id="gameMessageText"></p>
+                    <button class="btn small" id="gameMessageClose" type="button">Понятно</button>
+                </div>
+            </div>
+        </div>
+        <!-- Вне ui-overlay: иначе при игре оверлей скрывается и пропадают кнопка звука / тосты -->
+        <button type="button" class="sound-toggle" id="soundToggle">SFX</button>
+        <div class="unlock-toast" id="unlockToast" style="display:none;">
+            <div class="unlock-toast-card">
+                <img id="unlockToastImage" src="assets/wild_salmon_preview.png" alt="">
+                <strong id="unlockToastTitle">Скин разблокирован</strong>
+                <span id="unlockToastText">Можно выбрать в меню скинов</span>
+            </div>
+        </div>
+        <div class="ad-banner" id="adBanner">Новый рекорд рядом</div>
+        <div id="webAdsBannerSlot" class="web-ads-banner-slot" hidden></div>
+        <button type="button" id="webPlayStoreStrip" class="web-play-store-strip" hidden>
+            <span class="web-play-strip-text"></span>
+            <span class="web-play-strip-btn">Google Play →</span>
+        </button>
+    </div>
+
+    <section class="site-intro" aria-label="Об игре Wild Salmon">
+        <h2>Wild Salmon — неоновая аркада про рыбу Zalmon</h2>
+        <p>Wild Salmon («Дикий Лосось») — бесплатная браузерная аркада, в которой вы ведёте отважную рыбу Zalmon сквозь светящиеся неоновые ворота ночного океана. Одно касание — подъём, удержание — буст, а заполненный баллон нитро помогает прорваться сквозь самые узкие проходы. Собирайте монеты, открывайте скины, выполняйте ежедневные и недельные миссии и поднимайтесь в мировой таблице лидеров ТОП-10.</p>
+        <p>Игра создана независимой студией Ty Che Za. Здесь нет pay-to-win: прогресс строится на навыке, миссиях и коллекции скинов Zalmon™. Играйте в браузере без регистрации или добавьте ярлык на домашний экран iPhone и Android. Полная версия также доступна в <a href="https://play.google.com/store/apps/details?id=com.wildsalmon.neonbird" rel="noopener">Google Play</a>.</p>
+        <h2>iPhone: добавить игру на экран «Домой»</h2>
+        <p>Чтобы иконка на рабочем столе сразу открывала <strong>игру</strong> (не магазин), делайте так:</p>
+        <ol class="blog-list" style="list-style:decimal;padding-left:22px;">
+            <li>Откройте именно эту страницу в <strong>Safari</strong>: <a href="https://wildsalmon.kz/play.html">https://wildsalmon.kz/play.html</a> (не главную с мерчем).</li>
+            <li>Нажмите <strong>Поделиться</strong> (квадрат со стрелкой вверх).</li>
+            <li>Выберите <strong>На экран «Домой»</strong> → <strong>Добавить</strong>.</li>
+            <li>Запускайте игру с новой иконки <strong>Wild Salmon</strong> — без строки браузера, сразу в игру.</li>
+        </ol>
+        <p>Не используйте браузер внутри Instagram/Telegram — пункта «На экран Домой» там часто нет. Подробнее: <a href="guide-iphone-pwa.html">гайд по установке на iPhone</a>.</p>
+        <h2>Магазин мерча (отдельно от игры)</h2>
+        <p>Официальные футболки и кепки с каламбуром «дикий лосось» и скинами Zalmon — каталог на главной странице сайта:</p>
+        <p class="site-intro-links"><a href="/">→ Открыть магазин (главная)</a></p>
+        <h2>Полезные гайды</h2>
+        <ul class="blog-list">
+            <li><a href="guide-beginners.html">Гайд для новичков</a> — с чего начать и как не терять первые забеги</li>
+            <li><a href="guide-high-score.html">Как набрать высокий счёт</a> — техника касаний и чтение ворот</li>
+            <li><a href="guide-economy.html">Экономика и фарм</a> — монеты, паки и умные траты</li>
+            <li><a href="guide-skins.html">Обзор скинов</a> — бонусы Агента, Капитана и Бэтлосося</li>
+            <li><a href="guide-missions.html">Миссии и награды</a> — стабильный фарм монет</li>
+            <li><a href="guide-nitro.html">Нитро и пауэр-апы</a> — когда жать рывок и щит</li>
+            <li><a href="guide-leaderboard.html">Таблица лидеров</a> — путь в ТОП-10</li>
+            <li><a href="guide-iphone-pwa.html">Установка на iPhone</a> — Safari → На экран Домой</li>
+            <li><a href="guide-web-vs-play.html">Веб vs Google Play</a> — какую версию выбрать</li>
+            <li><a href="guide-troubleshooting.html">Устранение проблем</a> — белый экран, звук, прогресс</li>
+            <li><a href="guide-lore.html">История Zalmon</a> — лор неонового океана</li>
+        </ul>
+        <p class="site-intro-links">
+            <a href="about.html">Об игре</a> ·
+            <a href="how-to-play.html">Как играть</a> ·
+            <a href="blog.html">Блог</a> ·
+            <a href="faq.html">FAQ</a> ·
+            <a href="contact.html">Контакты</a> ·
+            <a href="privacy.html">Конфиденциальность</a> ·
+            <a href="terms.html">Условия</a>
+        </p>
+    </section>
+
+    <footer class="site-footer">
+        <nav aria-label="Site">
+            <a href="/">Магазин</a>
+            <span aria-hidden="true"> · </span>
+            <a href="about.html">Об игре</a>
+            <span aria-hidden="true"> · </span>
+            <a href="blog.html">Блог</a>
+            <span aria-hidden="true"> · </span>
+            <a href="faq.html">FAQ</a>
+            <span aria-hidden="true"> · </span>
+            <a href="contact.html">Контакты</a>
+            <span aria-hidden="true"> · </span>
+            <a href="privacy.html">Privacy</a>
+            <span aria-hidden="true"> · </span>
+            <a href="terms.html">Условия</a>
+        </nav>
+        <p>&copy; 2026 Ty Che Za · Wild Salmon · <a href="https://play.google.com/store/apps/details?id=com.wildsalmon.neonbird">Google Play</a></p>
+    </footer>
+    </div>
+    
+    <script>if(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform()){var _n=function(){};console.log=_n;console.debug=_n;console.info=_n;}</script>
+    <script src="sounds.js?v=20260604-v86"></script>
+    <script src="character_variants.js?v=20251126-34"></script>
+    <script src="integrations.js?v=20260617-ads"></script>
+    <script src="web_ads.js?v=20260617-ads"></script>
+    <script src="visual_effects.js?v=20260604-v86"></script>
+    <script src="meta_economy.js?v=20260604-v86"></script>
+    <!-- Firebase SDK грузится лениво из firebase_leaderboard.js после первого кадра -->
+    <script src="firebase-config.js?v=20260604-v86"></script>
+    <script src="firebase_leaderboard.js?v=20260604-v86"></script>
+    <script src="game.js?v=20260717-native"></script>
+    <script src="mobile_fixes.js?v=20260623-v1"></script>
+    <script src="pwa-install.js?v=20260623-v1"></script>
+    <script>
+    /* SW-сообщения: если новый SW сигнализирует о замене — перезагружаем страницу */
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('message', function (e) {
+        if (e.data && (e.data.type === 'RELOAD_PLEASE' || e.data === 'RELOAD_PLEASE')) {
+          window.location.reload();
+        }
+      });
+    }
+    /* Авто-сброс: если CSS не загрузился (старый SW отдал битый кэш) — идём на reset.html */
+    window.addEventListener('load', function () {
+      try {
+        var bg = getComputedStyle(document.body).backgroundColor;
+        var broken = bg === 'rgba(0, 0, 0, 0)' || bg === 'rgb(255, 255, 255)' || bg === '';
+        if (broken && !location.search.includes('nocache') && !sessionStorage.getItem('cssReset')) {
+          sessionStorage.setItem('cssReset', '1');
+          window.location.replace('reset.html?auto=1');
+        }
+      } catch (_) {}
+    });
+    </script>
+</body>
+</html>

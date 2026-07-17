@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://wildsalmon.kz/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://wildsalmon.kz/play.html</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/about.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wildsalmon.kz/how-to-play.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wildsalmon.kz/blog.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-beginners.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-high-score.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-economy.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-skins.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-missions.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-nitro.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-leaderboard.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-iphone-pwa.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-web-vs-play.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-troubleshooting.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wildsalmon.kz/guide-lore.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wildsalmon.kz/faq.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://wildsalmon.kz/contact.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wildsalmon.kz/privacy.html</loc><changefreq>yearly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://wildsalmon.kz/terms.html</loc><changefreq>yearly</changefreq><priority>0.65</priority></url>
+</urlset>
